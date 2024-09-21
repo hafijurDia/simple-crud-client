@@ -1,8 +1,9 @@
 
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './App.css'
 
 function App() {
+  const navigate = useNavigate();
 
   const handleAddUser = (e) => {
     e.preventDefault();
@@ -27,6 +28,7 @@ function App() {
         alert('User added successfully');
         form.reset();
       }
+      navigate('/users')
     })
 
   }
@@ -34,14 +36,13 @@ function App() {
   return (
     <>
       <h1>Simple CRUD</h1>
-      <Link to='/users'>ALl users</Link>
-      <br></br>
+    
       <form onSubmit={handleAddUser}>
         <input type="text" name='name' id='' placeholder='name'/>
         <br />
         <input type="email" name='email' id='' placeholder='email'/>
-        <br />
-        <input type="submit" value='Submit' />
+        <br /><br />
+        <input type="submit" value='Add User' />
       </form>
     </>
   )
