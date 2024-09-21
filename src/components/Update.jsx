@@ -1,8 +1,9 @@
 
-import { useLoaderData } from 'react-router-dom'
+import { useLoaderData, useNavigate } from 'react-router-dom'
 
 function Update() {
     const loadedUser = useLoaderData();
+    const navigate = useNavigate();
     const handleUpdateUser = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -20,6 +21,10 @@ function Update() {
         .then(res => res.json())
         .then(data => {
             console.log(data);
+            if (data.modifiedCount > 0) {
+                alert('User data updated successfuly')
+            }
+            navigate('/users')
         })
 
     }
